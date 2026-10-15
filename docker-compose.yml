@@ -29,6 +29,17 @@ services:
         condition: service_healthy
     networks:
       - trail-races-network
+    
+  frontend:
+    build:
+      context: ../trail-races-frontend
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend
+    networks:
+      - trail-races-network
 
 volumes:
   postgres_data:
